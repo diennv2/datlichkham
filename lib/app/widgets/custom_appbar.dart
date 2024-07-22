@@ -32,7 +32,7 @@ class CustomAppbar extends StatelessWidget {
                         const Icon(Icons.arrow_back_ios, color: Colors.white)),
                 label: Text(
                   "Quay lại",
-                  style: PrimaryStyle.medium(15, color: kWhiteColor),
+                  style: PrimaryStyle.medium(13, color: kWhiteColor),
                 )),
             centerTitle: true,
             title:

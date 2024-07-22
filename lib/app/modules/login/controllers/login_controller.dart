@@ -20,14 +20,17 @@ class LoginController extends GetxController {
   final box = GetStorage();
   GlobalKey<FormState> keyFormLogin = GlobalKey<FormState>();
   TextEditingController inputAccountNameController = TextEditingController();
+  TextEditingController inputTenantNameController = TextEditingController();
   TextEditingController inputPasswordController = TextEditingController();
 
+  final isLoadingTenant = true.obs;
   final errorList = ["", ""].obs;
   final isShowPassword = true.obs;
   final isLoading = false.obs;
   final showFingerPrint = false.obs;
   final showFaceId = false.obs;
 
+  String selectedTenant = "";
   @override
   void onInit() {
     // inputAccountNameController.text = "031083001045";
@@ -90,6 +93,7 @@ class LoginController extends GetxController {
       errorList[1] = "Vui lòng nhập mật khẩu";
       result = false;
     }
+
 
     return result;
   }

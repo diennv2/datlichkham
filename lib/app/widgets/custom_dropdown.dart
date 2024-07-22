@@ -23,14 +23,15 @@ class CustomDropDown extends StatelessWidget {
         onChanged: onChange,
         value: initValue,
         decoration: const InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          // contentPadding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
           fillColor: kWhiteColor,
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: kBorderColor),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: kPrimaryColor, width: 1),
-          ),
+          border: InputBorder.none,
+          // border: OutlineInputBorder(
+          //   borderSide: BorderSide(color: kWhiteColor),
+          // ),
+          // focusedBorder: OutlineInputBorder(
+          //   borderSide: BorderSide(color: kPrimaryColor, width: 1),
+          // ),
         ));
   }
 }

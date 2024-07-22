@@ -6,13 +6,13 @@ class BoxMainHeader extends StatelessWidget {
     Key? key,
     required this.title,
     this.icon = Icons.abc,
-    required this.gradient,
+    // required this.gradient,
     required this.onTap,
   }) : super(key: key);
 
   final String title;
   final IconData icon;
-  final LinearGradient gradient;
+  // final LinearGradient gradient;
   final VoidCallback onTap;
 
   @override
@@ -25,14 +25,20 @@ class BoxMainHeader extends StatelessWidget {
           child: Container(
             height: 120,
             decoration: BoxDecoration(
-                borderRadius: BorderRadiusDirectional.circular(10),
-                gradient: gradient),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Colors.deepOrange.withOpacity(0.5),
+                  width: 1.0,
+                  style: BorderStyle.solid
+                ),
+                // gradient: gradient
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   icon,
-                  color: kWhiteColor,
+                  color: Colors.black,
                   size: 30,
                 ),
                 SizedBox(height: 8),
@@ -43,7 +49,7 @@ class BoxMainHeader extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 16,
-                          color: kWhiteColor,
+                          color: Colors.black,
                           fontWeight: FontWeight.w600)),
                 ),
               ],

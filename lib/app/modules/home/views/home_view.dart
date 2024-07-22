@@ -1,6 +1,7 @@
 import 'package:ytehaiduong/app/common/config.dart';
 import 'package:ytehaiduong/app/common/primary_style.dart';
 import 'package:ytehaiduong/app/data/tenant_model.dart';
+import 'package:ytehaiduong/app/modules/notification/views/notification_view.dart';
 import 'package:ytehaiduong/app/routes/app_pages.dart';
 import 'package:ytehaiduong/app/widgets/custom_bottom_sheet_search.dart';
 import 'package:ytehaiduong/app/widgets/custom_dropdown.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../common/auth_controller.dart';
 import '../controllers/home_controller.dart';
 import 'components/box_doctor2.dart';
 import 'components/box_main_category.dart';
@@ -21,39 +23,47 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final AuthController _authController = Get.find();
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
+
         child: Column(
           children: [
-            Row(
-              children: [
-                BoxMainHeader(
-                    onTap: () async {
-                      if (!await launchUrl(Uri.parse("https://techber.vn"))) {
-                        _log.info("Can not open this url");
-                      }
-                    },
-                    title: "Xem Tin tức",
-                    gradient: kGradientFirst,
-                    icon: Icons.newspaper),
-                BoxMainHeader(
-                    onTap: () => Get.toNamed(Routes.BOOK_DETAIL),
-                    title: "Đặt lịch khám",
-                    gradient: kGradientFirst,
-                    icon: Icons.schedule_outlined),
-                BoxMainHeader(
-                    onTap: () async {
-                      if (!await launchUrl(Uri.parse("tel:02202223555"))) {
-                        _log.info("Can not open this url");
-                      }
-                    },
-                    title: "Tư vấn khám",
-                    gradient: kGradientFirst,
-                    icon: Icons.phone_enabled_outlined),
-              ],
+            // Thêm phần chào, avatar và chuông thông báo
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundImage: Image.network(
+                        _authController.userData.value.profilePicture!,
+                        errorBuilder: (context, error, stackTrace) =>
+                            Image.asset("assets/icons/logo.jpg")).image),
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Xin chào, ${_authController.userData.value.hoVaTen} !',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Chúng tôi có thể giúp gì cho bạn?',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                ],
+              ),
             ),
-            const SizedBox(height: kDefaultPadding),
             GetBuilder<HomeController>(
               builder: (_) {
                 if (_.isLoadingTenant.value == true) {
@@ -65,14 +75,42 @@ class HomeView extends GetView<HomeController> {
                   child: CustomDropDown(
                       initValue: _.selectedTenant,
                       onChange: (value) => _.selectTenant(value),
-                      listDropDown: _.listTenant
+                      listDropDown: _. listTenant
                           .map((TenantModel val) => DropdownMenuItem(
-                              value: val.tenantName,
-                              child: Text("${val.tenantName}",
-                                  style: PrimaryStyle.bold(14))))
+                          value: val.tenantName,
+                          child: Text("${val.tenantName}",
+                              style: PrimaryStyle.bold(14))))
                           .toList()),
                 );
               },
+            ),
+            const SizedBox(height: kDefaultPadding),
+            Row(
+              children: [
+                BoxMainHeader(
+                    onTap: () async {
+                      if (!await launchUrl(Uri.parse("https://techber.vn"))) {
+                        _log.info("Can not open this url");
+                      }
+                    },
+                    title: "Xem Tin tức",
+                    // gradient: kGradientFirst,
+                    icon: Icons.newspaper),
+                BoxMainHeader(
+                    onTap: () => Get.toNamed(Routes.BOOK_DETAIL),
+                    title: "Đặt lịch khám",
+                    // gradient: kGradientFirst,
+                    icon: Icons.schedule_outlined),
+                BoxMainHeader(
+                    onTap: () async {
+                      if (!await launchUrl(Uri.parse("tel:02202223555"))) {
+                        _log.info("Can not open this url");
+                      }
+                    },
+                    title: "Tư vấn khám",
+                    // gradient: kGradientFirst,
+                    icon: Icons.phone_enabled_outlined),
+              ],
             ),
             const SizedBox(height: kDefaultPadding),
             const Text(

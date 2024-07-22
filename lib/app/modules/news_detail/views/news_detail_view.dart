@@ -58,10 +58,9 @@ class NewsDetailView extends GetView<NewsDetailController> {
                   Icons.arrow_back,
                 ),
                 style: ElevatedButton.styleFrom(
-                  elevation: 0,
+                  elevation: 0, backgroundColor: kShadowColor,
                   shape: CircleBorder(),
                   padding: EdgeInsets.all(15),
-                  primary: kShadowColor,
                 ),
               ),
               SizedBox(width: kDefaultPadding / 2),

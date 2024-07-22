@@ -15,10 +15,11 @@ const kApiUrlProduction =
     "https://ttkc.techber.vn/api/services/app/MobileAppServices/";
 const kApiKeyProduction = "";
 // config color
-const kPrimaryColor = Color(0xffe96443);
+const kDenimColor = Color(0xff1c398c);
+const kPrimaryColor = Color(0xff449be6);
 const kBodyText = Color(0xff000000);
 const kGrayText = Color(0xff3C3C43); // with opacity 0.6
-const kRedColor = Color(0xffDC143C);
+const kRedColor = Color(0xff449be6);
 const kBlueColor = Color(0xff4169E1);
 const kGreenColor = Color(0xff2E8B57);
 const kOrangeColor = Color(0xffff924d);
@@ -30,11 +31,11 @@ const kNotRead = Color(0xfff7f7d7);
 
 // [Color(0xffec9f05), Color(0xffff4e00)],
 const kGradientFirst = LinearGradient(
-    colors: [Color(0xffe96443), Color(0xfffeb47b)],
+    colors: [Color(0xff449be6), Color(0xffa4c2dc)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight);
 const kGradientSecond = LinearGradient(
-    colors: [Color(0xffff7e5f), Color(0xfffeb47b)],
+    colors: [Color(0xff449be6), Color(0xffa4c2dc)],
     begin: Alignment.bottomLeft,
     end: Alignment.topRight);
 const kGradientLoading = LinearGradient(

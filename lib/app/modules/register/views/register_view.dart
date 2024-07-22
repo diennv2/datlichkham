@@ -296,10 +296,9 @@ class RegisterView extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => Get.back(),
                   style: ElevatedButton.styleFrom(
-                    elevation: 0,
+                    elevation: 0, backgroundColor: kShadowColor,
                     shape: const CircleBorder(),
                     padding: const EdgeInsets.all(15),
-                    primary: kShadowColor,
                   ),
                   child: const Icon(
                     Icons.arrow_back,
